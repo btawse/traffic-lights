@@ -1,0 +1,20 @@
+<h1>Here is your traffic light:</h1>
+
+<p>
+  <b>ID</b><br />
+  <%= @traffic_light.id %>
+</p>
+<p>
+  <b>Junction name</b><br />
+  <%= Junction.find(@traffic_light.junction_id).name %>
+</p>
+<p>
+  <b>Junction ID</b><br />
+  <%= @traffic_light.junction_id %>
+</p>
+<p>
+  <b>Colour</b><br />
+  <%= @traffic_light.colour %>
+</p>
+
+ <%= link_to "Back to all traffic lights", traffic_lights_path %>

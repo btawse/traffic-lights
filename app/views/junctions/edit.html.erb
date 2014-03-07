@@ -1,0 +1,20 @@
+<h1>Editing junction:</h1>
+
+<%= form_for :junction, url: junction_path(params[:id]), method: :patch do |f| %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %><br />
+    <%= if @junction; @junction.errors.full_messages end %>
+  </p>
+  <p>
+    <%= f.label :ID %><br />
+    <%= params[:id] %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to "Back to junctions", junctions_path %>

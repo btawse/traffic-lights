@@ -1,0 +1,44 @@
+<style = "text/css">
+  td { padding: 5px; }
+</style>
+
+<script type = "text/javascript">
+ setInterval(function () {document.getElementById("rotateAll").click();}, 1000);
+</script>
+
+<h1>Junctions</h1>
+
+<p>
+  <%= link_to "New junction", new_junction_path %>
+</p>
+
+<p>
+  <%= link_to "Rotate all junctions", rotate_all_junctions_path, method: :put, :id => "rotateAll" %>
+</p>
+
+<table>
+  <tr>
+    <td><b>Name</b></td>
+    <td><b>ID</b></td>
+  </tr>
+  <% Junction.all.each do |junction| %>
+    <tr>
+      <td><%= junction.name %></td>
+      <td><%= junction.id %></td>
+      <td><%= link_to "Update", edit_junction_path(junction.id) %></td>
+      <td><%= link_to "Delete", junction_path(junction.id), method: :delete %></td>
+      <td><%= link_to "New light", new_traffic_light_path(junction_id: junction.id) %></td>
+      <td><%= link_to "Rotate", rotate_junction_path(junction.id), method: :put %></td>
+      <%# junction.traffic_lights.each do |traffic_light| %>
+      <% TrafficLight.where("junction_id = ?", junction.id).each do |traffic_light| %>
+        <td style = "background-color:<%= traffic_light.colour %>">
+        <%= traffic_light.id.to_s + ": " + traffic_light.colour %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to "Back to main menu", "/" %>
+</p>

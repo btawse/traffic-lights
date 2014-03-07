@@ -1,0 +1,35 @@
+<style = "text/css">
+  td {
+    padding: 5px;
+  }
+</style>
+
+<h1>Traffic Lights:</h1>
+
+
+
+
+<table>
+  <tr>
+    <td><b>ID</b></td>
+    <td><b>Colour</b></td>
+    <td><b>Junction</b></td>
+    <td><b>Junction ID</b></td>
+    <td><b>Update</b></td>
+    <td><b>Delete</b></td>
+  </tr>
+  <% @traffic_lights.each do |traffic_light| %>
+    <tr>
+      <td><%= traffic_light.id %></td>
+      <td style = "background-color: <%= traffic_light.colour %>"><%= traffic_light.colour %></td>
+      <td><%= Junction.find(traffic_light.junction_id).name %></td>
+      <td><%= traffic_light.junction_id %></td>
+      <td><%= link_to "Update", edit_traffic_light_path(traffic_light.id) %></td>
+      <td><%= link_to "Delete", traffic_light_path(traffic_light.id), :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to "Back to main menu", "/" %>
+</p>
